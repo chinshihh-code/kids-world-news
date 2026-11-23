@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Kids International News | 2026 Week 47 (Lexile 500L)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+
+    /* iPad Landscape Optimization */
+    @media (min-width: 900px) {
+      .ipad-workspace {
+        display: grid;
+        grid-template-columns: 44% 56%;
+        gap: 1.25rem;
+        height: calc(100vh - 88px);
+        overflow: hidden;
+      }
+      .ipad-scroll-pane {
+        height: 100%;
+        overflow-y: auto;
+        padding-right: 0.35rem;
+      }
+      .ipad-scroll-pane::-webkit-scrollbar {
+        width: 6px;
+      }
+      .ipad-scroll-pane::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 9999px;
+      }
+    }
+
+    .sentence-highlight {
+      background-color: #fef08a !important;
+      border-radius: 4px;
+      padding: 1px 3px;
+      transition: background-color 0.25s ease;
+    }
+
+    .clickable-word {
+      cursor: pointer;
+      border-bottom: 1px dashed transparent;
+      transition: all 0.15s ease;
+      display: inline-block;
+    }
+    .clickable-word:hover {
+      color: #0284c7;
+      border-bottom-color: #0284c7;
+      background-color: #e0f2fe;
+      border-radius: 3px;
+    }
+
+    /* Printable A4 Worksheet Layout (1-2 Pages Max) */
+    #print-worksheet {
+      display: none;
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 15mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      #app-shell {
+        display: none !important;
+      }
+      #print-worksheet {
+        display: block !important;
+      }
+      .note-line {
+        border-bottom: 1px dashed #94a3b8;
+        height: 26px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== INTERACTIVE WEB APP ==================== -->
+<div id="app-shell" class="min-h-screen flex flex-col">
+  <!-- Top Bar -->
+  <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="bg-sky-600 text-white text-xs font-extrabold px-2.5 py-1 rounded-lg tracking-wide">WEEK 47 · 2026</span>
+        <div>
+          <h1 class="text-base md:text-lg font-extrabold text-slate-800 leading-tight">Global Kids News Lab</h1>
+          <p class="text-xs text-slate-500">Lexile 500L · Space Tech · Animal Science · Smart Fashion</p>
+        </div>
+      </div>
+
+      <!-- Story Tabs -->
+      <div id="story-tabs" class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl"></div>
+
+      <!-- Right Controls: Speed + Print -->
+      <div class="flex items-center gap-2">
+        <label class="text-xs font-semibold text-slate-600 hidden sm:inline">語速:</label>
+        <select id="speech-rate" class="text-xs font-semibold bg-slate-100 border border-slate-200 rounded-lg px-2 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <option value="0.75">0.75x 慢速</option>
+          <option value="0.9" selected>0.90x 適中</option>
+          <option value="1.0">1.00x 標準</option>
+          <option value="1.15">1.15x 進階</option>
+        </select>
+
+        <button onclick="prepareAndPrint()" class="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          列印本篇學習單
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace (iPad Landscape 2-Column) -->
+  <main class="max-w-7xl w-full mx-auto px-4 py-3 flex-1">
+    <div class="ipad-workspace">
+
+      <!-- LEFT COLUMN: Media + Audio Controls + Collapsible Vocab + Full Article -->
+      <section class="ipad-scroll-pane space-y-3 pb-6">
+        <!-- Hero Image Card with Source Link -->
+        <div class="relative rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-slate-900">
+          <img id="story-image" src="" alt="" class="w-full h-48 object-cover opacity-95" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/20 to-transparent"></div>
+          <div class="absolute top-3 left-3 flex items-center gap-2">
+            <span id="story-category" class="bg-sky-500/90 backdrop-blur text-white text-xs font-bold px-2.5 py-0.5 rounded-full"></span>
+            <span id="story-lexile" class="bg-white/90 text-slate-800 text-xs font-bold px-2.5 py-0.5 rounded-full"></span>
+          </div>
+          <a id="story-image-credit" href="#" target="_blank" rel="noopener noreferrer"
+             class="absolute top-3 right-3 bg-black/40 hover:bg-black/60 text-white/90 text-[10px] px-2 py-0.5 rounded-full transition">圖片：Wikimedia Commons</a>
+          <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
+            <div>
+              <h2 id="story-title" class="text-white font-extrabold text-lg leading-snug"></h2>
+              <p id="story-subtitle" class="text-slate-200 text-xs mt-0.5"></p>
+            </div>
+            <a id="story-source-link" href="#" target="_blank" rel="noopener noreferrer"
+               class="shrink-0 inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1.5 rounded-lg border border-white/25 transition">
+              <span>來源：<span id="story-source-name"></span></span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Full Article Audio & Shadowing Bar -->
+        <div class="bg-white rounded-2xl p-3 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <button id="btn-play-all" onclick="togglePlayAll()" class="flex items-center gap-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-sm">
+              <span id="play-all-icon">▶</span>
+              <span id="play-all-label">播放整篇朗讀</span>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="btn-record-all" onclick="toggleRecordFull()" class="flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold px-3 py-2 rounded-xl transition">
+              <span id="rec-all-dot" class="w-2 h-2 rounded-full bg-rose-500"></span>
+              <span id="rec-all-label">整篇跟讀錄音</span>
+            </button>
+            <button id="btn-playback-all" onclick="playFullRecording()" disabled class="disabled:opacity-40 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-2 rounded-xl transition">
+              🎧 回放錄音
+            </button>
+          </div>
+        </div>
+
+        <!-- Option C: Collapsible Core Vocabulary Drawer -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <button onclick="toggleVocabDrawer()" class="w-full px-4 py-2.5 bg-amber-50/80 hover:bg-amber-100/70 flex items-center justify-between text-left transition">
+            <div class="flex items-center gap-2">
+              <span class="text-amber-600 font-extrabold text-sm">📚 本篇精選單字庫 (4 Words · 點擊發音與跟讀)</span>
+            </div>
+            <span id="vocab-toggle-icon" class="text-xs font-bold text-amber-700 bg-amber-200/70 px-2 py-0.5 rounded-md">收合 ▲</span>
+          </button>
+          <div id="vocab-drawer-body" class="p-3 grid grid-cols-1 sm:grid-cols-2 gap-2.5 border-t border-amber-100"></div>
+        </div>
+
+        <!-- Bottom-Left Full Paragraph Reading Box -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Full Article · 整段完整閱讀</h3>
+            <button onclick="toggleFullTranslation()" id="btn-toggle-zh" class="text-xs font-semibold text-sky-600 hover:text-sky-800 bg-sky-50 px-2.5 py-1 rounded-lg transition">
+              顯示中文對照
+            </button>
+          </div>
+          <p id="full-article-en" class="text-sm leading-relaxed text-slate-800 font-medium"></p>
+          <p id="full-article-zh" class="hidden mt-3 pt-3 border-t border-slate-100 text-xs leading-relaxed text-slate-600"></p>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: 10-Sentence Shadowing + 3 Quizzes + Discussion -->
+      <section class="ipad-scroll-pane space-y-4 pb-8">
+        <!-- 10-Sentence Line-by-Line Shadowing -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="text-sm font-extrabold text-slate-800">🎙️ 逐句點讀與跟讀練習 (<span id="sentence-count">12</span> Sentences)</h3>
+              <p class="text-xs text-slate-500">點擊句中任意單字可單獨發音；點擊麥克風可錄製單句跟讀</p>
+            </div>
+          </div>
+          <div id="sentence-list" class="space-y-2"></div>
+        </div>
+
+        <!-- Integrated 3-Question Reading Comprehension Quiz -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-extrabold text-slate-800">✅ 閱讀理解小測驗 (3 Questions)</h3>
+            <span id="quiz-score-badge" class="text-xs font-bold bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full">得分：0 / 3</span>
+          </div>
+          <div id="quiz-container" class="space-y-3"></div>
+        </div>
+
+        <!-- Integrated Critical Thinking & Speaking Prompt -->
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">💬 Think & Speak · 思辨與口說表達</span>
+            <button onclick="speakDiscussionSample()" class="text-xs bg-white/15 hover:bg-white/25 px-2.5 py-1 rounded-lg font-semibold transition">
+              🔊 聽示範回答
+            </button>
+          </div>
+          <p id="discussion-prompt" class="text-sm font-bold text-white mb-2"></p>
+          <div class="bg-white/10 rounded-xl p-3 text-xs text-slate-200 leading-relaxed">
+            <span class="text-amber-300 font-bold">表達句型參考：</span>
+            <span id="discussion-sample"></span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ==================== PRINTABLE A4 WORKSHEET (1-2 PAGES) ==================== -->
+<div id="print-worksheet" class="max-w-3xl mx-auto">
+  <div class="border-b-2 border-slate-800 pb-2 mb-3 flex items-end justify-between">
+    <div>
+      <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Global Kids Weekly News Worksheet · 2026 Week 47 · Lexile 500L</p>
+      <h1 id="ws-title" class="text-xl font-extrabold text-slate-900 mt-0.5"></h1>
+      <p id="ws-subtitle" class="text-xs text-slate-600"></p>
+    </div>
+    <div class="text-right text-xs text-slate-600">
+      <p>Name: ______________________</p>
+      <p class="mt-1">Date: ______________________</p>
+    </div>
+  </div>
+
+  <!-- Top Section: Image + Source + Full Article -->
+  <div class="grid grid-cols-3 gap-4 mb-4 items-start">
+    <div class="col-span-1">
+      <img id="ws-image" src="" alt="" class="w-full h-36 object-cover rounded-lg border border-slate-300" />
+      <p id="ws-source" class="text-[10px] text-slate-500 mt-1 break-all"></p>
+    </div>
+    <div class="col-span-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
+      <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">Full Article 完整新聞閱讀</h2>
+      <p id="ws-article" class="text-[13px] leading-relaxed text-slate-900"></p>
+    </div>
+  </div>
+
+  <!-- Middle Section: 4 Key Vocabulary -->
+  <div class="mb-4">
+    <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2 border-b border-slate-300 pb-1">Key Vocabulary 核心單字</h2>
+    <div id="ws-vocab-grid" class="grid grid-cols-2 gap-2.5"></div>
+  </div>
+
+  <!-- Bottom Section: Blank Handwritten Notes Area -->
+  <div>
+    <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1 border-b border-slate-300 pb-1">My Reading Notes & Sentence Practice 閱讀筆記與造句練習</h2>
+    <div class="mt-1">
+      <div class="note-line"></div>
+      <div class="note-line"></div>
+      <div class="note-line"></div>
+      <div class="note-line"></div>
+      <div class="note-line"></div>
+      <div class="note-line"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const stories = [
+  {
+    id: 0,
+    tabLabel: "1. 月球 3D 基地",
+    category: "太空建築科技 · Space Architecture",
+    lexile: "Lexile 500L",
+    title: "3D-Printed Moon Houses for Future Astronauts",
+    subtitle: "月球 3D 列印基地：NASA 攜手建築團隊研究用月壤打造太空家園",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/CHAPEA_habitat_(1).jpg?width=1200",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:CHAPEA_habitat_(1).jpg",
+    sourceName: "NASA & ICON",
+    sourceUrl: "https://www.nasa.gov/directorates/stmd/nasa-enables-construction-technology-for-moon-and-mars-exploration/",
+    sentences: [
+      { en: "It costs a lot of money to send bricks to the Moon.", zh: "把磚塊送上月球要花很多錢。" },
+      { en: "So NASA is working on a new idea with engineers.", zh: "所以 NASA 正和工程師一起研究一個新點子。" },
+      { en: "They want to print houses right on the Moon.", zh: "他們想直接在月球上「列印」房子。" },
+      { en: "The printers would not need any bricks from Earth.", zh: "這些印表機不需要從地球帶任何磚塊。" },
+      { en: "Instead, they could use the gray dust on the Moon.", zh: "它們可以改用月球上的灰色塵土。" },
+      { en: "Robots would heat the dust with strong lasers until it melts.", zh: "機器人會用強力雷射加熱塵土，直到它熔化。" },
+      { en: "Then the printer builds thick walls, one layer at a time.", zh: "接著，印表機一層一層地蓋出厚厚的牆。" },
+      { en: "Round, thick walls can keep astronauts safe from cold and harmful rays.", zh: "又圓又厚的牆可以保護太空人，不受寒冷和有害射線的傷害。" },
+      { en: "Engineers already printed a test house in Texas.", zh: "工程師已經在德州印出一棟測試用的房子。" },
+      { en: "Four people lived inside it for more than a year.", zh: "有四個人在裡面住了一年多。" },
+      { en: "They were practicing for a future trip to Mars.", zh: "他們是在為未來的火星之旅做練習。" },
+      { en: "One day, astronauts may live in houses made from moon dust.", zh: "有一天，太空人也許會住在用月球塵土做成的房子裡。" }
+    ],
+    vocab: [
+      { word: "robot", phonetic: "/ˈrəʊ.bɒt/", pos: "n.", meaning: "機器人", example: "A robot can work in places that are too cold for people." },
+      { word: "layer", phonetic: "/ˈleɪ.ər/", pos: "n.", meaning: "層；一層", example: "The printer adds one thin layer at a time." },
+      { word: "shelter", phonetic: "/ˈʃel.tər/", pos: "n.", meaning: "庇護所；遮蔽處", example: "A strong shelter keeps astronauts safe." },
+      { word: "practice", phonetic: "/ˈpræk.tɪs/", pos: "v.", meaning: "練習", example: "The crew lived in the test house to practice for Mars." }
+    ],
+    quizzes: [
+      {
+        q: "1. What could the printers use to build houses on the Moon?",
+        options: ["Bricks from Earth", "Gray dust on the Moon", "Ice from the sky"],
+        answer: 1,
+        explanation: "文中第 5 句提到：they could use the gray dust on the Moon（可以使用月球上的灰色塵土）。"
+      },
+      {
+        q: "2. How does the printer build the walls?",
+        options: ["One layer at a time", "With wood and nails", "With big bricks"],
+        answer: 0,
+        explanation: "文中第 7 句提到印表機會一層一層地（one layer at a time）蓋出厚牆。"
+      },
+      {
+        q: "3. Why did four people live in the test house in Texas?",
+        options: ["To practice for a trip to Mars", "To sell the house", "To grow plants"],
+        answer: 0,
+        explanation: "文中第 10–11 句說明，四個人住了一年多，是為了練習未來的火星之旅（practicing for a future trip to Mars）。"
+      }
+    ],
+    discussion: {
+      prompt: "What would you bring to a Moon house? Why?",
+      sample: "I would bring my sketchbook. I want to draw the Earth from the Moon."
+    }
+  },
+  {
+    id: 1,
+    tabLabel: "2. 狗狗讀心術",
+    category: "動物行為科學 · Animal Cognition",
+    lexile: "Lexile 500L",
+    title: "Dogs Can Understand Feelings on Our Faces",
+    subtitle: "狗狗讀懂你的喜怒哀樂：最新研究揭開毛孩辨識人類表情的秘密",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Smiling_Dog_Face.jpg?width=1200",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Smiling_Dog_Face.jpg",
+    sourceName: "University of Vienna Research",
+    sourceUrl: "https://www.univie.ac.at/en/news/detail/brain-scans-show-that-dogs-can-distinguish-various-emotions-in-human-faces",
+    sentences: [
+      { en: "Many people think their dogs know when they feel happy or sad.", zh: "很多人覺得，狗狗知道自己什麼時候開心或難過。" },
+      { en: "Scientists now say that dogs really can read our faces.", zh: "科學家現在說，狗狗真的看得懂我們的臉。" },
+      { en: "In one study, calm dogs looked at photos of people.", zh: "在一項研究中，安靜放鬆的狗狗看著人的照片。" },
+      { en: "The people in the photos looked happy, angry, scared, or sad.", zh: "照片裡的人看起來有的開心、有的生氣、害怕或難過。" },
+      { en: "A safe machine took pictures of the dogs' brains.", zh: "一台安全的機器拍下了狗狗大腦的影像。" },
+      { en: "Their brains acted differently for each feeling.", zh: "牠們的大腦對每一種情緒都有不同的反應。" },
+      { en: "The dogs did not even need to hear a voice.", zh: "狗狗甚至不需要聽到聲音。" },
+      { en: "Other studies found that dogs look at our eyes and mouths.", zh: "其他研究發現，狗狗會看我們的眼睛和嘴巴。" },
+      { en: "In another test, one person cried and one person hummed.", zh: "在另一個實驗中，一個人在哭，另一個人在哼歌。" },
+      { en: "The dogs went to the crying person more often, as if to comfort them.", zh: "狗狗比較常走向哭泣的人，好像想安慰對方。" },
+      { en: "Scientists think living with people for thousands of years helped dogs learn this.", zh: "科學家認為，和人類一起生活了幾千年，讓狗狗學會了這件事。" },
+      { en: "The bond between people and dogs is truly special.", zh: "人和狗狗之間的情感連結真的很特別。" }
+    ],
+    vocab: [
+      { word: "face", phonetic: "/feɪs/", pos: "n.", meaning: "臉", example: "My dog looks at my face when I talk." },
+      { word: "feeling", phonetic: "/ˈfiː.lɪŋ/", pos: "n.", meaning: "感覺；情緒", example: "A big smile shows a happy feeling." },
+      { word: "comfort", phonetic: "/ˈkʌm.fərt/", pos: "v.", meaning: "安慰", example: "My dog sits with me to comfort me." },
+      { word: "bond", phonetic: "/bɒnd/", pos: "n.", meaning: "情感連結", example: "Playing together builds a strong bond." }
+    ],
+    quizzes: [
+      {
+        q: "1. What did the calm dogs look at in the study?",
+        options: ["Photos of people", "Videos of cats", "Toys on the floor"],
+        answer: 0,
+        explanation: "文中第 3 句提到：calm dogs looked at photos of people（狗狗看著人的照片）。"
+      },
+      {
+        q: "2. Which parts of our faces do dogs look at?",
+        options: ["Our ears and hair", "Our eyes and mouths", "Our noses and chins"],
+        answer: 1,
+        explanation: "文中第 8 句指出，狗狗會看我們的眼睛和嘴巴（eyes and mouths）。"
+      },
+      {
+        q: "3. Who did the dogs go to more often?",
+        options: ["The person who hummed", "The crying person", "Nobody"],
+        answer: 1,
+        explanation: "文中第 10 句提到：The dogs went to the crying person more often（狗狗比較常走向哭泣的人）。"
+      }
+    ],
+    discussion: {
+      prompt: "How can a pet help you when you feel sad?",
+      sample: "A pet can sit next to me. It can bring me a toy to cheer me up."
+    }
+  },
+  {
+    id: 2,
+    tabLabel: "3. 變色智慧衣",
+    category: "未來時尚科技 · Interactive Fashion",
+    lexile: "Lexile 500L",
+    title: "Color-Changing Smart Fabrics Enter Fashion",
+    subtitle: "會變色的智慧變色龍衣服：未來手機一按就能切換穿搭風格",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Parson%27s_Chameleon.jpg?width=1200",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Parson%27s_Chameleon.jpg",
+    sourceName: "AATCC Interactive Textile Insights",
+    sourceUrl: "https://www.aatcc.org/2025_aatccnews_color-changing-textiles-the-next-frontier-in-interactive-fashion/",
+    sentences: [
+      { en: "Imagine a jacket that can change from blue to pink in seconds.", zh: "想像一件幾秒鐘就能從藍色變成粉紅色的外套。" },
+      { en: "Scientists are working on clothes that can change color.", zh: "科學家正在研究會變色的衣服。" },
+      { en: "Most of these clothes are still being tested in labs.", zh: "這些衣服大多還在實驗室裡測試。" },
+      { en: "Scientists weave thin threads that carry electricity into soft fabric.", zh: "科學家把能導電的細線織進柔軟的布料裡。" },
+      { en: "A tiny, safe bit of electricity makes the colors change.", zh: "一點點安全的電流，就能讓顏色改變。" },
+      { en: "In some tests, people change the color with a phone app.", zh: "在一些測試中，人們用手機應用程式來改變顏色。" },
+      { en: "Some fabrics change color in sunlight or from body heat.", zh: "有些布料在陽光下或碰到體溫時會變色。" },
+      { en: "This is a lot like a chameleon changing its skin color.", zh: "這很像變色龍改變皮膚的顏色。" },
+      { en: "One shirt could look like many different shirts.", zh: "一件衣服可以變成好多件不同的樣子。" },
+      { en: "So people may buy fewer clothes and make less waste.", zh: "所以人們可能會少買一些衣服，也製造更少的垃圾。" },
+      { en: "Scientists still need to make these clothes easy to wash.", zh: "科學家還需要讓這些衣服變得容易清洗。" },
+      { en: "One day, you may pick your shirt color on your phone!", zh: "有一天，你也許能在手機上挑選衣服的顏色！" }
+    ],
+    vocab: [
+      { word: "fabric", phonetic: "/ˈfæb.rɪk/", pos: "n.", meaning: "布料", example: "This soft fabric feels nice on my skin." },
+      { word: "thread", phonetic: "/θred/", pos: "n.", meaning: "線；細線", example: "The thin thread carries a tiny bit of electricity." },
+      { word: "test", phonetic: "/test/", pos: "v.", meaning: "測試", example: "Scientists test new clothes in the lab." },
+      { word: "waste", phonetic: "/weɪst/", pos: "n.", meaning: "浪費；垃圾", example: "Buying fewer clothes makes less waste." }
+    ],
+    quizzes: [
+      {
+        q: "1. Where are most color-changing clothes right now?",
+        options: ["In every store", "Still being tested in labs", "Only on the Moon"],
+        answer: 1,
+        explanation: "文中第 3 句提到：Most of these clothes are still being tested in labs（大多還在實驗室測試）。"
+      },
+      {
+        q: "2. What can make some fabrics change color?",
+        options: ["Loud music", "Sunlight or body heat", "Cold water"],
+        answer: 1,
+        explanation: "文中第 7 句提到有些布料在陽光下或碰到體溫（sunlight or body heat）時會變色。"
+      },
+      {
+        q: "3. Why may people buy fewer clothes?",
+        options: ["One shirt can look like many shirts", "Clothes cost too much", "Stores are closed"],
+        answer: 0,
+        explanation: "文中第 9–10 句說明，一件衣服可以變成好多件的樣子，所以人們可能會少買衣服。"
+      }
+    ],
+    discussion: {
+      prompt: "What color would your shirt be at school? What about on the weekend?",
+      sample: "At school, my shirt would be blue. On the weekend, it would be bright yellow!"
+    }
+  }
+];
+
+let currentStoryIdx = 0;
+let isPlayingAll = false;
+let showTranslation = false;
+let vocabOpen = true;
+let quizAnswers = [{}, {}, {}];
+
+// MediaRecorder state
+let mediaRecorder = null;
+let audioChunks = [];
+let fullAudioUrl = null;
+let sentenceAudioUrls = {};
+let activeRecordingTarget = null;
+let pendingRecordingTarget = null; // 錄音中按了另一個麥克風：停掉目前的，接著錄新的
+
+function init() {
+  renderTabs();
+  loadStory(0);
+}
+
+function renderTabs() {
+  const container = document.getElementById('story-tabs');
+  container.innerHTML = stories.map((s, idx) => `
+    <button onclick="loadStory(${idx})"
+      class="px-3 py-1.5 rounded-lg text-xs font-bold transition ${idx === currentStoryIdx ? 'bg-white text-sky-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}">
+      ${s.tabLabel}
+    </button>
+  `).join('');
+}
+
+function loadStory(idx) {
+  stopSpeech();
+  currentStoryIdx = idx;
+  renderTabs();
+  const s = stories[idx];
+
+  document.getElementById('story-image').src = s.image;
+  document.getElementById('story-image').alt = s.title;
+  document.getElementById('story-image-credit').href = s.imageCreditUrl;
+  document.getElementById('story-category').textContent = s.category;
+  document.getElementById('story-lexile').textContent = s.lexile;
+  document.getElementById('story-title').textContent = s.title;
+  document.getElementById('story-subtitle').textContent = s.subtitle;
+  document.getElementById('story-source-name').textContent = s.sourceName;
+  document.getElementById('story-source-link').href = s.sourceUrl;
+
+  fullAudioUrl = null;
+  sentenceAudioUrls = {};
+  document.getElementById('btn-playback-all').disabled = true;
+
+  const fullEnEl = document.getElementById('full-article-en');
+  fullEnEl.innerHTML = s.sentences.map((item, sIdx) =>
+    `<span id="full-sent-${sIdx}" class="transition-colors">${wrapClickableWords(item.en)}</span>`
+  ).join(' ');
+
+  document.getElementById('full-article-zh').textContent = s.sentences.map(item => item.zh).join('');
+
+  renderVocabDrawer(s.vocab);
+  renderSentenceList(s.sentences);
+  document.getElementById('sentence-count').textContent = s.sentences.length;
+  renderQuizzes(s.quizzes);
+
+  document.getElementById('discussion-prompt').textContent = s.discussion.prompt;
+  document.getElementById('discussion-sample').textContent = s.discussion.sample;
+}
+
+function wrapClickableWords(sentence) {
+  return sentence.split(' ').map(token => {
+    const clean = token.replace(/[^a-zA-Z0-9'-]/g, '');
+    if (!clean) return token;
+    return `<span class="clickable-word" onclick="speakWord('${clean.replace(/'/g, "\\'")}', event)" title="點擊聽單字發音">${token}</span>`;
+  }).join(' ');
+}
+
+function renderVocabDrawer(vocabList) {
+  const container = document.getElementById('vocab-drawer-body');
+  container.innerHTML = vocabList.map(v => `
+    <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between gap-1">
+          <div class="flex items-baseline gap-1.5">
+            <span class="font-extrabold text-sm text-sky-800">${v.word}</span>
+            <span class="text-[11px] text-slate-400 font-mono">${v.phonetic}</span>
+            <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-1.5 rounded">${v.pos}</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <button onclick="speakText('${v.word}', 0.8)" class="p-1 rounded-lg bg-sky-100 hover:bg-sky-200 text-sky-700 text-xs" title="單字發音">🔊</button>
+            <button onclick="speakText('${v.example.replace(/'/g, "\\'")}', 0.85)" class="p-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-800 text-[10px] font-bold px-1.5" title="例句發音">例句</button>
+          </div>
+        </div>
+        <p class="text-xs font-bold text-slate-700 mt-1">${v.meaning}</p>
+      </div>
+      <p class="text-[11px] text-slate-500 italic mt-1 leading-snug">"${v.example}"</p>
+    </div>
+  `).join('');
+}
+
+function toggleVocabDrawer() {
+  vocabOpen = !vocabOpen;
+  const body = document.getElementById('vocab-drawer-body');
+  const icon = document.getElementById('vocab-toggle-icon');
+  body.classList.toggle('hidden', !vocabOpen);
+  icon.textContent = vocabOpen ? '收合 ▲' : '展開 ▼';
+}
+
+function toggleFullTranslation() {
+  showTranslation = !showTranslation;
+  const zhEl = document.getElementById('full-article-zh');
+  const btn = document.getElementById('btn-toggle-zh');
+  zhEl.classList.toggle('hidden', !showTranslation);
+  btn.textContent = showTranslation ? '隱藏中文對照' : '顯示中文對照';
+}
+
+function renderSentenceList(sentences) {
+  const container = document.getElementById('sentence-list');
+  container.innerHTML = sentences.map((item, idx) => `
+    <div id="row-sent-${idx}" class="p-2.5 rounded-xl border border-slate-100 bg-slate-50/70 hover:bg-sky-50/40 transition flex items-start justify-between gap-2.5">
+      <div class="flex items-start gap-2.5 flex-1">
+        <span class="shrink-0 w-5 h-5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-bold flex items-center justify-center mt-0.5">${idx + 1}</span>
+        <div>
+          <p class="text-sm font-medium text-slate-800 leading-relaxed">${wrapClickableWords(item.en)}</p>
+          <p class="text-xs text-slate-500 mt-0.5">${item.zh}</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1 shrink-0">
+        <button onclick="speakSingleSentence(${idx})" class="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-sky-400 text-sky-600 text-xs shadow-sm" title="單句朗讀">
+          🔊
+        </button>
+        <button id="rec-btn-${idx}" onclick="toggleRecordSentence(${idx})" class="p-1.5 rounded-lg bg-white border border-slate-200 hover:border-rose-400 text-rose-600 text-xs shadow-sm" title="單句跟讀錄音">
+          🎙️
+        </button>
+        <button id="play-rec-${idx}" onclick="playSentenceRecording(${idx})" disabled class="disabled:opacity-30 p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs" title="回放我的跟讀">
+          ▶
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderQuizzes(quizzes) {
+  const container = document.getElementById('quiz-container');
+  const saved = quizAnswers[currentStoryIdx] || {};
+
+  container.innerHTML = quizzes.map((qItem, qIdx) => {
+    const chosen = saved[qIdx];
+    const isAnswered = chosen !== undefined;
+    return `
+      <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/60">
+        <p class="text-xs font-extrabold text-slate-800 mb-2">${qItem.q}</p>
+        <div class="space-y-1.5">
+          ${qItem.options.map((opt, oIdx) => {
+            let btnClass = "bg-white border-slate-200 text-slate-700 hover:bg-sky-50";
+            if (isAnswered) {
+              if (oIdx === qItem.answer) {
+                btnClass = "bg-emerald-50 border-emerald-500 text-emerald-900 font-bold";
+              } else if (oIdx === chosen) {
+                btnClass = "bg-rose-50 border-rose-500 text-rose-900";
+              } else {
+                btnClass = "bg-white border-slate-200 text-slate-400";
+              }
+            }
+            return `
+              <button onclick="selectQuizOption(${qIdx}, ${oIdx})"
+                class="w-full text-left text-xs px-3 py-2 rounded-lg border transition flex items-center justify-between ${btnClass}">
+                <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                ${isAnswered && oIdx === qItem.answer ? '<span>✔</span>' : ''}
+                ${isAnswered && oIdx === chosen && oIdx !== qItem.answer ? '<span>✘</span>' : ''}
+              </button>
+            `;
+          }).join('')}
+        </div>
+        ${isAnswered ? `<p class="mt-2 text-[11px] text-slate-600 bg-white p-2 rounded-lg border border-slate-200">💡 ${qItem.explanation}</p>` : ''}
+      </div>
+    `;
+  }).join('');
+
+  updateScoreBadge();
+}
+
+function selectQuizOption(qIdx, oIdx) {
+  quizAnswers[currentStoryIdx][qIdx] = oIdx;
+  renderQuizzes(stories[currentStoryIdx].quizzes);
+}
+
+function updateScoreBadge() {
+  const s = stories[currentStoryIdx];
+  const saved = quizAnswers[currentStoryIdx] || {};
+  let score = 0;
+  s.quizzes.forEach((q, idx) => {
+    if (saved[idx] === q.answer) score++;
+  });
+  document.getElementById('quiz-score-badge').textContent = `得分：${score} / ${s.quizzes.length}`;
+}
+
+// ==================== SPEECH SYNTHESIS (TTS) ====================
+function getRate() {
+  return parseFloat(document.getElementById('speech-rate').value) || 0.9;
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.sentence-highlight').forEach(el => el.classList.remove('sentence-highlight'));
+}
+
+function highlightSentence(idx) {
+  clearHighlights();
+  const fullSpan = document.getElementById(`full-sent-${idx}`);
+  const rowDiv = document.getElementById(`row-sent-${idx}`);
+  if (fullSpan) fullSpan.classList.add('sentence-highlight');
+  if (rowDiv) {
+    rowDiv.classList.add('sentence-highlight');
+    rowDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function stopSpeech() {
+  window.speechSynthesis.cancel();
+  isPlayingAll = false;
+  clearHighlights();
+  document.getElementById('play-all-icon').textContent = '▶';
+  document.getElementById('play-all-label').textContent = '播放整篇朗讀';
+}
+
+function speakWord(word, event) {
+  if (event) event.stopPropagation();
+  stopSpeech();
+  const utter = new SpeechSynthesisUtterance(word);
+  utter.lang = 'en-US';
+  utter.rate = 0.78;
+  window.speechSynthesis.speak(utter);
+}
+
+function speakText(text, customRate) {
+  stopSpeech();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = customRate || getRate();
+  window.speechSynthesis.speak(utter);
+}
+
+function speakSingleSentence(idx) {
+  stopSpeech();
+  const sentence = stories[currentStoryIdx].sentences[idx].en;
+  highlightSentence(idx);
+  const utter = new SpeechSynthesisUtterance(sentence);
+  utter.lang = 'en-US';
+  utter.rate = getRate();
+  utter.onend = () => clearHighlights();
+  window.speechSynthesis.speak(utter);
+}
+
+function togglePlayAll() {
+  if (isPlayingAll) {
+    stopSpeech();
+    return;
+  }
+  isPlayingAll = true;
+  document.getElementById('play-all-icon').textContent = '⏹';
+  document.getElementById('play-all-label').textContent = '停止朗讀';
+  playSentenceChain(0);
+}
+
+function playSentenceChain(idx) {
+  const sentences = stories[currentStoryIdx].sentences;
+  if (!isPlayingAll || idx >= sentences.length) {
+    stopSpeech();
+    return;
+  }
+  highlightSentence(idx);
+  const utter = new SpeechSynthesisUtterance(sentences[idx].en);
+  utter.lang = 'en-US';
+  utter.rate = getRate();
+  utter.onend = () => {
+    if (!isPlayingAll) return;
+    setTimeout(() => playSentenceChain(idx + 1), 550);
+  };
+  window.speechSynthesis.speak(utter);
+}
+
+function speakDiscussionSample() {
+  speakText(stories[currentStoryIdx].discussion.sample, getRate());
+}
+
+// ==================== SHADOWING RECORDING (MediaRecorder) ====================
+async function startRecording(target) {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    audioChunks = [];
+    activeRecordingTarget = target;
+    mediaRecorder = new MediaRecorder(stream);
+
+    mediaRecorder.ondataavailable = e => {
+      if (e.data.size > 0) audioChunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || (audioChunks[0] && audioChunks[0].type) || 'audio/mp4' });
+      const url = URL.createObjectURL(blob);
+      if (activeRecordingTarget === 'all') {
+        fullAudioUrl = url;
+        document.getElementById('btn-playback-all').disabled = false;
+        document.getElementById('rec-all-label').textContent = '整篇跟讀錄音';
+      } else if (typeof activeRecordingTarget === 'number') {
+        const idx = activeRecordingTarget;
+        sentenceAudioUrls[idx] = url;
+        document.getElementById(`play-rec-${idx}`).disabled = false;
+        document.getElementById(`rec-btn-${idx}`).textContent = '🎙️';
+      }
+      stream.getTracks().forEach(t => t.stop());
+      activeRecordingTarget = null;
+      if (pendingRecordingTarget !== null) {
+        const next = pendingRecordingTarget;
+        pendingRecordingTarget = null;
+        startRecording(next);
+      }
+    };
+
+    mediaRecorder.start();
+    if (target === 'all') {
+      document.getElementById('rec-all-label').textContent = '錄音中...點擊停止';
+    } else {
+      document.getElementById(`rec-btn-${target}`).textContent = '⏹';
+    }
+  } catch (err) {
+    alert('請允許瀏覽器使用麥克風權限，即可進行跟讀錄音練習！');
+  }
+}
+
+function toggleRecordFull() {
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    if (activeRecordingTarget !== 'all') pendingRecordingTarget = 'all';
+    mediaRecorder.stop();
+  } else {
+    stopSpeech();
+    startRecording('all');
+  }
+}
+
+function playFullRecording() {
+  if (fullAudioUrl) new Audio(fullAudioUrl).play();
+}
+
+function toggleRecordSentence(idx) {
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    if (activeRecordingTarget !== idx) pendingRecordingTarget = idx;
+    mediaRecorder.stop();
+  } else {
+    stopSpeech();
+    startRecording(idx);
+  }
+}
+
+function playSentenceRecording(idx) {
+  if (sentenceAudioUrls[idx]) new Audio(sentenceAudioUrls[idx]).play();
+}
+
+// ==================== A4 PRINT WORKSHEET ====================
+function prepareAndPrint() {
+  const s = stories[currentStoryIdx];
+  document.getElementById('ws-title').textContent = s.title;
+  document.getElementById('ws-subtitle').textContent = s.subtitle;
+  document.getElementById('ws-image').src = s.image;
+  document.getElementById('ws-source').textContent = `Source: ${s.sourceName} (${s.sourceUrl}) · Photo: Wikimedia Commons`;
+  document.getElementById('ws-article').textContent = s.sentences.map(item => item.en).join(' ');
+
+  document.getElementById('ws-vocab-grid').innerHTML = s.vocab.map(v => `
+    <div class="border border-slate-300 rounded-md p-2 bg-white">
+      <div class="flex items-baseline justify-between">
+        <span class="font-bold text-sm text-slate-900">${v.word} <span class="text-xs font-normal text-slate-500">${v.phonetic} (${v.pos})</span></span>
+        <span class="text-xs font-bold text-slate-800">${v.meaning}</span>
+      </div>
+      <p class="text-[11px] text-slate-600 italic mt-0.5">"${v.example}"</p>
+    </div>
+  `).join('');
+
+  window.print();
+}
+
+window.addEventListener('DOMContentLoaded', init);
+</script>
+  <script>window.KWN_ARTICLES=["3D-Printed Moon Houses for Future Astronauts", "Dogs Can Understand Feelings on Our Faces", "Color-Changing Smart Fabrics Enter Fashion"]</script>
+  <script src="../rec-save.js"></script>
+</body>
+</html>
